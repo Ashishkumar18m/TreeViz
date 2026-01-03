@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DFS & BFS Graph Visualization</title>
+   
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>DFS & BFS Graph Visualization</h1>
+            <div class="subtitle">Draw any graph/tree structure and visualize traversal algorithms</div>
+            <div class="nav-buttons">
+                <button class="btn btn-secondary" id="homeBtn">
+                    <i class="fas fa-home"></i> Home
+                </button>
+                <button class="btn btn-primary" id="helpBtn">
+                    <i class="fas fa-question-circle"></i> Help
+                </button>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <!-- Left Panel: Drawing and Controls -->
+            <div class="left-panel">
+                <div class="control-panel">
+                    <h2>Algorithm Selection</h2>
+                    <div class="btn-group">
+                        <button id="bfsBtn" class="btn-primary">Breadth-First Search</button>
+                        <button id="dfsBtn" class="btn-primary">Depth-First Search</button>
+                    </div>
+                    <p>Selected: <span id="selectedAlgorithm">None</span></p>
+                </div>
+
+                <div class="control-panel">
+                    <h2>Graph Drawing Canvas</h2>
+                    <div class="instructions">
+                        <h3>Instructions:</h3>
+                        <p>1. Click to create nodes (circles)</p>
+                        <p>2. Click and drag between nodes to create edges</p>
+                        <p>3. Right-click to delete a node</p>
+                        <p>4. Draw any graph or tree structure</p>
+                        <p>5. You can create cycles, disconnected components, etc.</p>
+                    </div>
+                    <div class="btn-group">
+                        <button id="clearBtn" class="btn-secondary">Clear Canvas</button>
+                        <button id="sampleTreeBtn" class="btn-success">Sample Tree</button>
+                        <button id="sampleGraphBtn" class="btn-warning">Sample Graph</button>
+                    </div>
+                </div>
+
+                <div class="canvas-container">
+                    <canvas id="drawingCanvas"></canvas>
+                </div>
+
+                <div class="node-input-section">
+                    <h2>Assign Node Values</h2>
+                    <p>Enter values for each node (optional, defaults to node ID):</p>
+                    <div id="nodeInputsContainer" class="node-inputs">
+                        <!-- Node inputs will be generated here -->
+                    </div>
+                    <button id="applyValuesBtn" class="btn-success" style="margin-top: 15px;">Apply Values</button>
+                </div>
+            </div>
+
+            <!-- Right Panel: Visualization -->
+            <div class="right-panel">
+                <div class="control-panel">
+                    <h2>Graph Visualization & Traversal</h2>
+                    <p>Your graph structure is replicated here exactly as drawn</p>
+                    
+                    <div class="start-node-selector">
+                        <label for="startNodeSelect"><strong>Select Starting Node:</strong></label>
+                        <select id="startNodeSelect">
+                            <option value="">-- Select a node --</option>
+                            <!-- Options will be populated here -->
+                        </select>
+                    </div>
+
+                    <div class="btn-group">
+                        <button id="visualizeBtn" class="btn-success" disabled>Start Visualization</button>
+                        <button id="resetVisBtn" class="btn-secondary">Reset</button>
+                    </div>
+                </div>
+
+                <div class="visualization-area">
+                    <canvas id="visCanvas"></canvas>
+                </div>
+
+                <div class="step-controls">
+                    <button id="prevStepBtn" class="btn-secondary" disabled>Previous Step</button>
+                    <button id="nextStepBtn" class="btn-primary" disabled>Next Step</button>
+                    <button id="autoPlayBtn" class="btn-success" disabled>Auto Play</button>
+                </div>
+
+                <div class="step-info" id="stepInfo">
+                    <h3>Traversal Steps:</h3>
+                    <div id="stepDetails">Select an algorithm, draw a graph, choose starting node, then click "Start Visualization"</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for instructions -->
+    <div class="modal" id="instructionModal">
+        <div class="modal-content">
+            <h2>Welcome to DFS/BFS Graph Visualizer!</h2>
+            <p>This tool works for both trees and graphs!</p>
+            <ol style="text-align: left; margin: 20px;">
+                <li>Draw any graph structure (tree, cyclic, disconnected, etc.)</li>
+                <li>The same structure is copied to visualization area</li>
+                <li>Select BFS or DFS algorithm</li>
+                <li>Choose starting node</li>
+                <li>Visualize traversal step by step</li>
+                <li>See final traversal order at the end</li>
+            </ol>
+            <button id="closeModalBtn" class="btn-primary">Get Started</button>
+        </div>
+    </div>
+
+</body>
+</html>
