@@ -109,7 +109,7 @@ body {
 
 /* Tool Card */
 .tool-card {
-    background: white;
+    background: linear-gradient(135deg, #c1c3cb 0%, #c9c5ce 100%);
     border-radius: var(--border-radius);
     padding: 30px;
     box-shadow: var(--shadow);

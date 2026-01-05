@@ -28,6 +28,36 @@ function resizeCanvases() {
     drawVisualization();
 }
 
+        // ===============================
+                // Help Modal Functions
+        function showHelpModal() {
+            document.getElementById('helpModal').style.display = 'flex';
+        }
+        
+        function closeHelpModal() {
+            document.getElementById('helpModal').style.display = 'none';
+        }
+        
+        // Close modal when clicking outside
+        document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById('helpModal');
+            if (modal) {
+                modal.addEventListener('click', function(e) {
+                    if (e.target === modal) {
+                        closeHelpModal();
+                    }
+                });
+                
+                // Close with Escape key
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape' && modal.style.display === 'flex') {
+                        closeHelpModal();
+                    }
+                });
+            }
+        });
+
+
 // DOM Elements
 const bfsBtn = document.getElementById('bfsBtn');
 const dfsBtn = document.getElementById('dfsBtn');
@@ -103,6 +133,8 @@ closeModalBtn.addEventListener('click', () => {
     instructionModal.style.display = 'none';
 });
 
+ helpBtn.addEventListener('click', showHelpModal);  // Changed from alert to modal
+ 
 startNodeSelect.addEventListener('change', (e) => {
     selectedStartNode = e.target.value ? parseInt(e.target.value) : null;
     updateVisualizeButton();
