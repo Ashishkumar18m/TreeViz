@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DSA Tree Visualizer</title>
+    <link rel="stylesheet" href="tree.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+ 
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">
+                <i class="fas fa-project-diagram"></i>
+                <div>
+                    <h1>DSA Tree Visualizer</h1>
+                    <p>Interactive Data Structures & Algorithms Learning Tool</p>
+                </div>
+            </div>
+            <div class="nav-buttons">
+                <a href="index.html"><button class="btn btn-secondary" id="homeBtn">
+                    <i class="fas fa-home"></i> Home
+                </button></a>
+                <button class="btn btn-primary" id="helpBtn">
+                    <i class="fas fa-question-circle"></i> Help
+                </button>
+            </div>
+        </div>
+
+        <!-- Page Container -->
+        <div class="page-container">
+            <!-- Page 1: Tree Selection -->
+            <div class="page active" id="page1">
+                <h2 class="page-title">Select Tree Type</h2>
+                <p class="page-subtitle">Choose a tree type, configure options, and continue to visualization</p>
+                
+                <div class="tree-grid">
+                    <!-- Simple Tree -->
+                    <div class="tree-card" data-tree="simple">
+                        <div class="tree-icon">
+                            <i class="fas fa-tree"></i>
+                        </div>
+                        <h3>Simple Tree</h3>
+                        <p>A basic tree structure with parent-child relationships</p>
+                        
+                        <div class="tree-options">
+                            <div class="option-group">
+                                <label for="simpleDemo">Demo Type</label>
+                                <select id="simpleDemo">
+                                    <option value="basic">Basic Tree Construction</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="continue-btn-container">
+                            <button class="continue-btn tree-continue-btn" data-tree="simple">
+                                <i class="fas fa-arrow-right"></i> Visualize Simple Tree
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Binary Tree -->
+                    <div class="tree-card" data-tree="binary">
+                        <div class="tree-icon">
+                            <i class="fas fa-sitemap"></i>
+                        </div>
+                        <h3>Binary Tree</h3>
+                        <p>A tree where each node has at most two children</p>
+                        
+                        <div class="tree-options">
+                            <div class="option-group">
+                                <label for="binaryDemo">Demo Type</label>
+                                <select id="binaryDemo">
+                                    <option value="construction">Tree Construction</option>
+                                    
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="continue-btn-container">
+                            <button class="continue-btn tree-continue-btn" data-tree="binary">
+                                <i class="fas fa-arrow-right"></i> Visualize Binary Tree
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Binary Search Tree -->
+                    <div class="tree-card" data-tree="bst">
+                        <div class="tree-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <h3>Binary Search Tree</h3>
+                        <p>A binary tree with ordered nodes for efficient search</p>
+                        
+                        <div class="tree-options">
+                            <div class="option-group">
+                                <label for="bstDemo">Operation Type</label>
+                                <select id="bstDemo">
+                                    <option value="insertion">Insertion</option>
+                                    
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="continue-btn-container">
+                            <button class="continue-btn tree-continue-btn" data-tree="bst">
+                                <i class="fas fa-arrow-right"></i> Visualize BST
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- AVL Tree -->
+                    <div class="tree-card" data-tree="avl">
+                        <div class="tree-icon">
+                            <i class="fas fa-balance-scale"></i>
+                        </div>
+                        <h3>AVL Tree</h3>
+                        <p>A self-balancing binary search tree with rotations</p>
+                        
+                        <div class="tree-options">
+                            <div class="option-group">
+                                <label for="avlDemo">Demo Type</label>
+                                <select id="avlDemo">
+                                    <option value="insertion">Insertion with Rotations</option>
+                                    
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="continue-btn-container">
+                            <button class="continue-btn tree-continue-btn" data-tree="avl">
+                                <i class="fas fa-arrow-right"></i> Visualize AVL Tree
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Heap Tree -->
+                    <div class="tree-card" data-tree="heap">
+                        <div class="tree-icon">
+                            <i class="fas fa-layer-group"></i>
+                        </div>
+                        <h3>Heap Tree</h3>
+                        <p>A complete binary tree with heap property</p>
+                        
+                        <div class="tree-options">
+                            <div class="option-group">
+                                <label for="heapType">Heap Type</label>
+                                <select id="heapType">
+                                    <option value="max">Max Heap (Parent ≥ Children)</option>
+                                    <option value="min">Min Heap (Parent ≤ Children)</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="continue-btn-container">
+                            <button class="continue-btn tree-continue-btn" data-tree="heap">
+                                <i class="fas fa-arrow-right"></i> Visualize Heap
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Trie Tree -->
+                    <div class="tree-card" data-tree="trie">
+                        <div class="tree-icon">
+                            <i class="fas fa-font"></i>
+                        </div>
+                        <h3>Trie (Prefix Tree)</h3>
+                        <p>A tree for storing strings with efficient prefix search</p>
+                        
+                        <div class="tree-options">
+                            <div class="option-group">
+                                <label for="trieDemo">Operation Type</label>
+                                <select id="trieDemo">
+                                    <option value="insertion">Word Insertion</option>
+                                    <option value="search">Prefix Search</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="continue-btn-container">
+                            <button class="continue-btn tree-continue-btn" data-tree="trie">
+                                <i class="fas fa-arrow-right"></i> Visualize Trie
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+
+    <div class="social-media">
+      <a class="con" id="con1" href="mailto:ashish.kumar.24cse@bmu.edu.in" target="_blank"><i class='bx bx-envelope'></i></a>
+      <a class="con" id="con2" href="https://www.linkedin.com/in/ashish-kumar18m/" target="_blank"><i class='bx bxl-linkedin'></i></a>
+      <a class="con" id="con3" href="https://github.com/Ashishkumar18m" target="_blank"><i class='bx bxl-github'></i></a>
+      <a class="con" id="con2" href="https://x.com/AshishKumar_18m" target="_blank"><i class='bx bxl-twitter'></i></a>
+      <a class="con" id="con4" href="https://www.instagram.com" target="_blank"><i class='bx bxl-instagram'></i></a>
+
+    </div>
+    <div class="f">
+      <p>&copy 2026 Ashish Kumar. Build with ❤️ and 🔥</p>
+      
+      
+    </div>
+
+  </footer>
+</body>
+</html>
