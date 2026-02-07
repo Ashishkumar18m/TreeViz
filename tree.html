@@ -188,6 +188,184 @@
                     </div>
                 </div>
             </div>
+            
+            <!-- Page 2: Visualization -->
+            <div class="page" id="page2">
+                <button class="back-btn" id="backBtn">
+                    <i class="fas fa-arrow-left"></i> Back to Selection
+                </button>
+                
+                <div class="visualization-container">
+                    <!-- Input Section -->
+                    <div class="input-section">
+                        <h3 id="selectedTreeTitle" style="color: var(--secondary-color); margin-bottom: 15px;">Select Tree Type</h3>
+                        
+                        <div class="input-group">
+                            <div class="input-field">
+                                <label for="nodeInput" id="nodeInputLabel">Enter Values</label>
+                                <input type="text" id="nodeInput" placeholder="e.g., 30, 20, 40, 10, 25, 35, 37">
+                            </div>
+                            
+                            <div class="input-field" style="min-width: 200px;">
+                                <label for="operationType">Operation</label>
+                                <select id="operationType">
+                                    <option value="build">Build Tree</option>
+                                    <option value="insert">Insert Node</option>
+
+                                </select>
+                            </div>
+                            
+                            <div class="input-field" style="min-width: 150px;" id="nodeValueField">
+                                <label for="nodeValue" id="nodeValueLabel">Value</label>
+                                <input type="text" id="nodeValue" placeholder="Enter value">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Control Buttons -->
+                    <div class="control-section">
+                        <div class="control-buttons">
+                            <button class="btn btn-primary" id="buildTreeBtn">
+                                <i class="fas fa-tree"></i> Build Tree
+                            </button>
+                            <button class="btn btn-success" id="nextStepBtn" disabled>
+                                <i class="fas fa-forward"></i> Next Step
+                            </button>
+                            <button class="btn btn-warning" id="prevStepBtn" disabled>
+                                <i class="fas fa-backward"></i> Previous Step
+                            </button>
+                            <button class="btn btn-secondary" id="autoBuildBtn">
+                                <i class="fas fa-play-circle"></i> Auto Build
+                            </button>
+                            <button class="btn btn-danger" id="resetBtn">
+                                <i class="fas fa-redo"></i> Reset
+                            </button>
+                        </div>
+                        
+                        <div class="speed-control">
+                            <label for="speedSlider">Speed:</label>
+                            <input type="range" id="speedSlider" min="1" max="10" value="5">
+                            <span id="speedValue">Medium</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Main Content Area -->
+                    <div class="main-content">
+                        <!-- Steps Panel -->
+                        <div class="steps-panel">
+                            <h3 class="panel-title">Algorithm Steps</h3>
+                            <div class="steps-list" id="stepsList">
+                                <!-- Steps will be dynamically added here -->
+                                <div class="step-item">
+                                    <span class="step-index">1</span>
+                                    <div class="step-title">Initial State</div>
+                                    <div class="step-description">Ready to build tree</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Visualization Panel -->
+                        <div class="visualization-panel">
+                            <h3 class="panel-title">Tree Visualization</h3>
+                            <div class="current-step-info" id="currentStepInfo">
+                                Ready to visualize tree. Click "Build Tree" to start.
+                            </div>
+                            
+                            <div class="tree-container">
+                                <svg class="tree-svg" id="treeSvg" width="600" height="350"></svg>
+                            </div>
+                            <!-- Traversal Output for Binary Tree -->
+                            <div class="traversal-output" id="traversalOutput" style="display: none;">
+                                <div class="traversal-title" id="traversalTitle">Traversal Result:</div>
+                                <div id="traversalResult"></div>
+                            </div>
+                            <!-- Word List for Trie -->
+                            <div class="word-list" id="wordList" style="display: none;"></div>
+                        </div>
+                        
+                        <!-- Stats Panel -->
+                        <div class="stats-panel">
+                            <h3 class="panel-title">Tree Statistics</h3>
+                            <div class="stats-grid">
+                                <div class="stat-item">
+                                    <span class="stat-label">Total Nodes</span>
+                                    <span class="stat-value" id="nodeCount">0</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Leaf Nodes</span>
+                                    <span class="stat-value" id="leafCount">0</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Tree Height</span>
+                                    <span class="stat-value" id="treeHeight">0</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Balance Factor</span>
+                                    <span class="stat-value" id="balanceFactor">0</span>
+                                </div>
+                            </div>
+                            
+                            <div class="rotation-stats" id="rotationStats" style="display: none;">
+                                <h4 style="color: var(--warning-color); margin-bottom: 10px;">Rotation Count</h4>
+                                <div class="rotation-item">
+                                    <span>LL Rotations:</span>
+                                    <span id="llCount">0</span>
+                                </div>
+                                <div class="rotation-item">
+                                    <span>RR Rotations:</span>
+                                    <span id="rrCount">0</span>
+                                </div>
+                                <div class="rotation-item">
+                                    <span>LR Rotations:</span>
+                                    <span id="lrCount">0</span>
+                                </div>
+                                <div class="rotation-item">
+                                    <span>RL Rotations:</span>
+                                    <span id="rlCount">0</span>
+                                </div>
+                                <div class="rotation-item" style="font-weight: 600; margin-top: 10px; padding-top: 10px; border-top: 1px solid #ffc107;">
+                                    <span>Total Rotations:</span>
+                                    <span id="totalRotations">0</span>
+                                </div>
+                            </div>
+
+                            <!-- Heap Properties -->
+                            <div class="rotation-stats" id="heapStats" style="display: none;">
+                                <h4 style="color: var(--warning-color); margin-bottom: 10px;">Heap Properties</h4>
+                                <div class="rotation-item">
+                                    <span>Heap Type:</span>
+                                    <span id="heapTypeDisplay">Max Heap</span>
+                                </div>
+                                <div class="rotation-item">
+                                    <span>Root Value:</span>
+                                    <span id="rootValue">-</span>
+                                </div>
+                                <div class="rotation-item">
+                                    <span>Heapify Steps:</span>
+                                    <span id="heapifySteps">0</span>
+                                </div>
+                            </div>
+
+                            <!-- Trie Properties -->
+                            <div class="rotation-stats" id="trieStats" style="display: none;">
+                                <h4 style="color: var(--warning-color); margin-bottom: 10px;">Trie Properties</h4>
+                                <div class="rotation-item">
+                                    <span>Total Words:</span>
+                                    <span id="totalWords">0</span>
+                                </div>
+                                <div class="rotation-item">
+                                    <span>Total Nodes:</span>
+                                    <span id="trieNodeCount">0</span>
+                                </div>
+                                <div class="rotation-item">
+                                    <span>Longest Word:</span>
+                                    <span id="longestWord">-</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <footer>
@@ -207,5 +385,6 @@
     </div>
 
   </footer>
+   <script src="tree.js"></script>
 </body>
 </html>
