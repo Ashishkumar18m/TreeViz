@@ -18,6 +18,47 @@ const visCanvas = document.getElementById('visCanvas');
 const drawingCtx = drawingCanvas.getContext('2d');
 const visCtx = visCanvas.getContext('2d');
 
+
+        // DOM Elements for user management
+        const signupBtn = document.getElementById('signupBtn');
+        const userInfo = document.getElementById('userInfo');
+        const userName = document.getElementById('userName');
+        const logoutBtn = document.getElementById('logoutBtn');
+
+        // Check if user is logged in on page load
+        function checkUserLogin() {
+            const userData = localStorage.getItem('treeviz_user');
+            if (userData) {
+                const user = JSON.parse(userData);
+                // Show user info, hide signup button
+                signupBtn.style.display = 'none';
+                userInfo.style.display = 'flex';
+                userName.textContent = `${user.firstName} ${user.lastName}`;
+            } else {
+                // Show signup button, hide user info
+                signupBtn.style.display = 'flex';
+                userInfo.style.display = 'none';
+            }
+        }
+
+        // Initialize user state
+        checkUserLogin();
+
+        // Sign up button click handler
+        signupBtn.addEventListener('click', function() {
+            // Redirect to signup page with return URL
+            window.location.href = 'signup.html?returnTo=' + encodeURIComponent(window.location.href);
+        });
+
+        // Logout button click handler
+        logoutBtn.addEventListener('click', function() {
+            if (confirm('Are you sure you want to log out?')) {
+                localStorage.removeItem('treeviz_user');
+                checkUserLogin();
+            }
+        });
+
+
 // Set canvas dimensions
 function resizeCanvases() {
     drawingCanvas.width = drawingCanvas.parentElement.clientWidth;
