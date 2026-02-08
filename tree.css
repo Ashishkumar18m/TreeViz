@@ -80,6 +80,57 @@ body {
     text-decoration: none;
 }
 
+ .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .user-info:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .user-info i {
+            font-size: 1.1rem;
+        }
+
+        .user-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .logout-btn {
+            background: transparent;
+            border: none;
+            color: white;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+
+.btn-user {
+            background: linear-gradient(135deg, #00c853 0%, #00e676 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+}
+
 /* Page Container */
 .page-container {
     flex: 1;
