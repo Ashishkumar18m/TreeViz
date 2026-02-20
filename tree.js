@@ -1,3 +1,38 @@
+// In graph.js and tree.js - Add this after checkUserLogin()
+
+// Override the signup button click handler to include return URL
+document.getElementById('signupBtn')?.addEventListener('click', function(e) {
+    e.preventDefault();
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    window.location.href = `signup.html?returnTo=${encodeURIComponent(currentPage)}`;
+});
+
+// If there's a login button, also handle it
+document.getElementById('loginBtn')?.addEventListener('click', function(e) {
+    e.preventDefault();
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    window.location.href = `login.html?returnTo=${encodeURIComponent(currentPage)}`;
+});
+
+// Also update any inline onclick handlers in HTML
+// Remove any existing onclick attributes and use this approach
+// Redirect to signup with current page as return URL
+function redirectToSignup() {
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    window.location.href = `signup.html?returnTo=${encodeURIComponent(currentPage)}`;
+}
+
+// Redirect to login with current page as return URL
+function redirectToLogin() {
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    window.location.href = `login.html?returnTo=${encodeURIComponent(currentPage)}`;
+}
+
+// Update the existing signup button event listener
+document.getElementById('signupBtn')?.addEventListener('click', redirectToSignup);
+
+// Also update any login links if they exist
+document.getElementById('loginBtn')?.addEventListener('click', redirectToLogin);
 // DOM Elements for user management
         const signupBtn = document.getElementById('signupBtn');
         const userInfo = document.getElementById('userInfo');
@@ -20,8 +55,40 @@
             }
         }
 
+
         // Initialize user state
         checkUserLogin();
+// Add this after the existing checkUserLogin() function
+
+// Verify user with backend (optional)
+async function verifyUserWithBackend() {
+    const userData = localStorage.getItem('treeviz_user');
+    if (!userData) return;
+    
+    try {
+        const user = JSON.parse(userData);
+        const response = await fetch('http://localhost:5000/api/user', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email: user.email })
+        });
+        
+        const result = await response.json();
+        if (!result.success) {
+            // User not found in backend, clear local storage
+            localStorage.removeItem('treeviz_user');
+            checkUserLogin(); // Update UI
+        }
+    } catch (error) {
+        console.log('Backend verification skipped (server might be offline)');
+    }
+}
+
+// Call this after checkUserLogin()
+verifyUserWithBackend();
+
 
         // Sign up button click handler
         signupBtn.addEventListener('click', function() {
@@ -36,6 +103,22 @@
                 checkUserLogin();
             }
         });
+
+        // In graph.js and tree.js - Add this after the signup button code
+
+// Login button click handler (if login button exists)
+document.getElementById('loginBtn')?.addEventListener('click', function(e) {
+    e.preventDefault();
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    window.location.href = `login.html?returnTo=${encodeURIComponent(currentPage)}`;
+});
+
+// Also update the signup button handler to ensure it's working
+document.getElementById('signupBtn')?.addEventListener('click', function(e) {
+    e.preventDefault();
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    window.location.href = `signup.html?returnTo=${encodeURIComponent(currentPage)}`;
+});
 // 1. Simple Tree Node
 class SimpleTreeNode {
     constructor(value) {
