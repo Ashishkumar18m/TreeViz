@@ -764,3 +764,252 @@ body {
         margin-bottom: 12px;
     }
 }
+
+@media (max-width: 360px) {
+   body {
+    height: 90vh;
+        padding: 5px;
+        overflow: auto;
+    }
+
+    .login-container {
+        width: 100%;
+        max-width: 340px;
+        height: 78vh;
+        max-height: 700px;
+        border-radius: 16px;
+        flex-direction: column;
+    }
+
+    /* Brand Side - Logo Only */
+    .brand-side {
+        flex: none;
+        height: auto;
+        min-height: 90px;
+        padding: 10px 8px;
+        justify-content: center;
+    }
+
+    .brand-side::before,
+    .brand-side::after {
+        width: 120px;
+        height: 120px;
+    }
+
+    .logo {
+        margin-bottom: 0;
+    }
+
+    .logo-icon {
+        font-size: 2rem;
+        margin-bottom: 3px;
+        filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.3));
+    }
+
+    .logo h1 {
+        font-size: 1.3rem;
+        margin-bottom: 2px;
+    }
+
+    .tagline {
+        font-size: 0.6rem;
+    }
+
+    /* Hide Features Section Completely */
+    .features {
+        display: none;
+    }
+
+    /* Hide Testimonial */
+    .testimonial {
+        display: none;
+    }
+
+    /* Login Side */
+    .login-side {
+        flex: 1;
+        padding: 12px 10px;
+    }
+
+    .login-side::before,
+    .login-side::after {
+        width: 100px;
+        height: 100px;
+    }
+
+    .form-header {
+        margin-bottom: 8px;
+    }
+
+    .form-header h2 {
+        font-size: 1.2rem;
+        margin-bottom: 2px;
+    }
+
+    .form-header p {
+        font-size: 0.65rem;
+    }
+
+    .form-group {
+        margin-bottom: 10px;
+    }
+
+    .form-group label {
+        margin-bottom: 3px;
+        font-size: 0.7rem;
+    }
+
+    .input-with-icon i {
+        left: 10px;
+        font-size: 0.8rem;
+    }
+
+    .toggle-password {
+        right: 10px;
+    }
+
+    .form-control {
+        padding: 8px 8px 8px 32px;
+        border-width: 1.5px;
+        border-radius: 6px;
+        font-size: 0.75rem;
+    }
+
+    .form-options {
+        margin-bottom: 10px;
+        font-size: 0.7rem;
+        flex-direction: row;
+        gap: 8px;
+    }
+
+    .remember-checkbox {
+        gap: 4px;
+    }
+
+    .remember-checkbox input {
+        width: 14px;
+        height: 14px;
+    }
+
+    .remember-checkbox label {
+        font-size: 0.65rem;
+    }
+
+    .forgot-link {
+        font-size: 0.65rem;
+    }
+
+    /* Login Button */
+    .btn-login {
+        padding: 10px;
+        font-size: 0.8rem;
+        border-radius: 6px;
+        margin-bottom: 8px;
+    }
+
+    .btn-login i {
+        font-size: 0.8rem;
+    }
+
+    .btn-login:hover {
+        transform: translateY(-1px);
+    }
+
+    .divider {
+        margin: 6px 0;
+        font-size: 0.7rem;
+    }
+
+    .divider::before,
+    .divider::after {
+        width: 30%;
+    }
+
+    /* Social Login - 3 in a row */
+    .social-login {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 4px;
+        margin-bottom: 8px;
+    }
+
+    .btn-social {
+        padding: 6px 2px;
+        border-width: 1.5px;
+        border-radius: 5px;
+        font-size: 0.6rem;
+        gap: 2px;
+    }
+
+    .btn-social i {
+        font-size: 0.65rem;
+    }
+
+    .btn-social:hover {
+        transform: translateY(-1px);
+    }
+
+    .btn-social::before {
+        display: none; /* Remove hover effect on mobile */
+    }
+
+    .signup-link {
+        font-size: 0.7rem;
+        margin-top: 2px;
+    }
+
+    .demo-credentials {
+        margin-top: 8px;
+        padding: 5px;
+        font-size: 0.6rem;
+    }
+
+    .field-error {
+        font-size: 0.55rem;
+        margin-top: 2px;
+        margin-left: 4px;
+    }
+
+    /* Animation adjustments for mobile */
+    @keyframes logoFloat {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-3px); }
+    }
+
+    @keyframes pulse {
+        0%, 100% { transform: scale(1); opacity: 0.3; }
+        50% { transform: scale(1.05); opacity: 0.5; }
+    }
+
+    @keyframes floatNode {
+        0%, 100% {
+            transform: translateY(0) rotate(0deg);
+        }
+        50% {
+            transform: translateY(-10px) rotate(90deg);
+        }
+    }
+
+    /* Node animations - reduce movement on mobile */
+    .tree-node, .graph-node, .binary-node {
+        animation-duration: 20s;
+    }
+
+    /* Touch optimization */
+    button, 
+    input, 
+    .btn-social,
+    .forgot-link {
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Reduce motion if preferred */
+    @media (prefers-reduced-motion: reduce) {
+        * {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+        }
+    }
+}
