@@ -564,7 +564,7 @@ body {
 
         /* Responsive */
         @media (max-width: 768px) {
-            .signup-container {
+           .signup-container {
                 flex-direction: column;
                 max-height: 90vh;
                 height: 90vh;
@@ -608,7 +608,7 @@ body {
         }
 
         @media (max-width: 480px) {
-            .signup-container {
+         .signup-container {
                 width: 98%;
                 height: 95vh;
             }
@@ -635,6 +635,7 @@ body {
             }
         }
 
+
         @media (max-height: 700px) {
             .signup-container {
                 height: 95vh;
@@ -651,7 +652,7 @@ body {
         }
 
         @media (max-height: 600px) {
-            .signup-container {
+         .signup-container {
                 height: 98vh;
                 max-height: 98vh;
             }
@@ -681,3 +682,251 @@ body {
                 margin-bottom: 10px;
             }
         }
+
+@media (max-width: 360px) {
+    body {
+        padding: 5px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        overflow: auto;
+        margin-right: 20px;
+        margin-left: -15px;
+    }
+
+    .signup-container {
+        width: 100%;
+        max-width: 340px;
+        height: 98vh;
+        max-height: 700px;
+        border-radius: 16px;
+        flex-direction: column;
+    }
+
+    /* Brand Side - Logo Only */
+    .brand-side {
+        flex: none;
+        height: auto;
+        min-height: 90px;
+        padding: 10px 8px;
+        justify-content: center;
+    }
+
+    .brand-side::before,
+    .brand-side::after {
+        width: 120px;
+        height: 120px;
+    }
+
+    .logo {
+        margin-bottom: 0;
+    }
+
+    .logo-icon {
+        font-size: 2rem;
+        margin-bottom: 3px;
+        filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.3));
+    }
+
+    .logo h1 {
+        font-size: 1.3rem;
+        margin-bottom: 2px;
+    }
+
+    .tagline {
+        font-size: 0.6rem;
+    }
+
+    /* Hide Benefits Section Completely */
+    .benefits {
+        display: none;
+    }
+
+    /* Form Side */
+    .signup-side {
+        flex: 1;
+        padding: 12px 10px;
+    }
+
+    .signup-side::before,
+    .signup-side::after {
+        width: 100px;
+        height: 100px;
+    }
+
+    .form-header {
+        margin-bottom: 8px;
+    }
+
+    .form-header h2 {
+        font-size: 1.2rem;
+        margin-bottom: 3px;
+    }
+
+    .form-header p {
+        font-size: 0.65rem;
+    }
+
+    .form-wrapper {
+        padding-right: 2px;
+    }
+
+    /* Form Grid - Single Column */
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 6px;
+        margin-bottom: 8px;
+    }
+
+    .form-group {
+        margin-bottom: 6px;
+    }
+
+    .form-group.full-width {
+        grid-column: span 1;
+    }
+
+    .form-group label {
+        margin-bottom: 2px;
+        font-size: 0.7rem;
+    }
+
+    .input-with-icon i {
+        left: 10px;
+        font-size: 0.75rem;
+    }
+
+    .form-control {
+        padding: 8px 8px 8px 30px;
+        border-width: 1.5px;
+        border-radius: 6px;
+        font-size: 0.7rem;
+    }
+
+    select.form-control {
+        padding: 8px 8px 8px 30px;
+        font-size: 0.7rem;
+    }
+
+    .password-strength {
+        margin-top: 2px;
+        font-size: 0.6rem;
+    }
+
+    .strength-bar {
+        height: 2px;
+        margin-right: 5px;
+    }
+
+    .strength-text {
+        min-width: 45px;
+        font-size: 0.6rem;
+    }
+
+    .form-options {
+        margin-bottom: 8px;
+        font-size: 0.7rem;
+        flex-direction: row;
+        gap: 5px;
+    }
+
+    .terms-checkbox input {
+        width: 12px;
+        height: 12px;
+        margin-right: 4px;
+    }
+
+    .terms-checkbox label {
+        font-size: 0.6rem;
+        line-height: 1.2;
+    }
+
+    /* Sign Up Button */
+    .btn-signup {
+        padding: 10px;
+        font-size: 0.8rem;
+        border-radius: 6px;
+        margin-bottom: 8px;
+    }
+
+    .btn-signup i {
+        font-size: 0.8rem;
+    }
+
+    .divider {
+        margin: 6px 0;
+        font-size: 0.7rem;
+    }
+
+    /* Social Buttons - 3 in a row */
+    .social-signup {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 4px;
+        margin-bottom: 8px;
+    }
+
+    .btn-social {
+        padding: 6px 2px;
+        border-width: 1.5px;
+        border-radius: 5px;
+        font-size: 0.6rem;
+        gap: 2px;
+    }
+
+    .btn-social i {
+        font-size: 0.65rem;
+    }
+
+    .btn-social:hover {
+        transform: translateY(-1px);
+    }
+
+    .btn-social::before {
+        display: none; /* Remove hover effect on mobile */
+    }
+
+    .login-link {
+        font-size: 0.7rem;
+        margin-top: 3px;
+    }
+
+    .field-hint {
+        font-size: 0.55rem;
+        margin-top: 2px;
+        margin-left: 4px;
+    }
+
+    .field-error {
+        font-size: 0.55rem;
+        margin-top: 2px;
+        margin-left: 4px;
+    }
+
+    /* Animation adjustments for mobile */
+    @keyframes logoFloat {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-3px); }
+    }
+
+    @keyframes pulse {
+        0%, 100% { transform: scale(1); opacity: 0.3; }
+        50% { transform: scale(1.05); opacity: 0.5; }
+    }
+
+    /* Touch optimization */
+    button, 
+    input, 
+    select {
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Reduce motion if preferred */
+    @media (prefers-reduced-motion: reduce) {
+        * {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+        }
+    }
+}

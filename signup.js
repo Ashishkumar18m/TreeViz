@@ -119,76 +119,86 @@ function saveUserData(firstName, lastName, email) {
 }
 
 // Modify the form submission handler in signup.html
-document.getElementById('signupForm').addEventListener('submit', function (e) {
+// In signup.js - Replace the entire form submission handler
+
+document.getElementById('signupForm').addEventListener('submit', async function (e) {
     e.preventDefault();
 
     if (!validateForm()) {
-        // Create error shake animation
         const container = document.querySelector('.signup-container');
         container.style.animation = 'none';
         setTimeout(() => {
             container.style.animation = 'shake 0.5s ease';
         }, 10);
-
-        setTimeout(() => {
-            container.style.animation = '';
-        }, 500);
         return;
     }
 
     const btn = this.querySelector('button[type="submit"]');
+    const firstName = document.getElementById('firstName').value;
+    const lastName = document.getElementById('lastName').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const userType = document.getElementById('userType').value;
+
+    // Get return URL from query parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const returnTo = urlParams.get('returnTo') || 'index.html';
 
     // Show loading state
     const originalContent = btn.innerHTML;
     btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating Account...';
     btn.disabled = true;
 
-    // Add success glow effect
-    document.querySelector('.signup-container').style.boxShadow =
-        '0 20px 40px rgba(0, 0, 0, 0.5), 0 0 100px rgba(0, 230, 118, 0.4)';
+    try {
+        // Send data to backend
+        const response = await fetch('http://localhost:5000/api/signup', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                firstName,
+                lastName,
+                email,
+                password,
+                userType
+            })
+        });
 
-    // Simulate API call for registration
-    setTimeout(() => {
-        // Get form data
-        const firstName = document.getElementById('firstName').value;
-        const lastName = document.getElementById('lastName').value;
-        const email = document.getElementById('email').value;
+        const result = await response.json();
 
-        // Save user data to localStorage
-        saveUserData(firstName, lastName, email);
-
-        // Reset button
+        if (result.success) {
+            // Save user to localStorage
+            localStorage.setItem('treeviz_user', JSON.stringify(result.user));
+            
+            // Success animation
+            document.querySelector('.signup-container').style.boxShadow =
+                '0 20px 40px rgba(0, 0, 0, 0.5), 0 0 100px rgba(0, 230, 118, 0.4)';
+            
+            alert(`Welcome to TreeViz, ${firstName}! Your account has been created.`);
+            
+            // Redirect back to the page user came from
+            setTimeout(() => {
+                window.location.href = returnTo;
+            }, 1000);
+        } else {
+            alert(`Error: ${result.error}`);
+        }
+    } catch (error) {
+        console.error('Signup error:', error);
+        alert('Network error. Please check if backend server is running.');
+    } finally {
         btn.innerHTML = originalContent;
         btn.disabled = false;
+    }
+});
 
-        // Create success animation
-        const container = document.querySelector('.signup-container');
-        container.style.animation = 'none';
-        setTimeout(() => {
-            container.style.animation = 'successPulse 1s ease';
-        }, 10);
-
-        setTimeout(() => {
-            container.style.animation = '';
-
-            // Show success message
-            alert(`Welcome to TreeViz, ${firstName} ${lastName}! Your account has been created.`);
-
-            // Check if there's a return URL in query parameters
-            const urlParams = new URLSearchParams(window.location.search);
-            const returnTo = urlParams.get('returnTo');
-
-            // Redirect back to graph page or to login
-            setTimeout(() => {
-                if (returnTo) {
-                    window.location.href = returnTo;
-                } else {
-                    // Default redirect to graph page
-                    window.location.href = 'graph.html';
-                }
-            }, 1000);
-        }, 1000);
-    }, 1500);
+// Update the login link in signup page to preserve return URL
+document.getElementById('loginLink')?.addEventListener('click', function(e) {
+    e.preventDefault();
+    const urlParams = new URLSearchParams(window.location.search);
+    const returnTo = urlParams.get('returnTo') || 'index.html';
+    window.location.href = `login.html?returnTo=${encodeURIComponent(returnTo)}`;
 });
 
 // Also update the login link to pass return URL
@@ -198,12 +208,12 @@ document.getElementById('loginLink').addEventListener('click', function (e) {
     const urlParams = new URLSearchParams(window.location.search);
     const returnTo = urlParams.get('returnTo');
 
-    if (returnTo) {
-        // In a real app, you would navigate to login with return URL
-        alert('Login would be implemented in production. Return URL: ' + returnTo);
-    } else {
-        alert('Login would be implemented in production');
-    }
+    // if (returnTo) {
+    //     // In a real app, you would navigate to login with return URL
+    //     alert('Login would be implemented in production. Return URL: ' + returnTo);
+    // } else {
+    //     alert('Login would be implemented in production');
+    // }
 });
 // Create animated background nodes
 function createAnimatedNodes() {
@@ -432,7 +442,7 @@ document.getElementById('signupForm').addEventListener('submit', function (e) {
             container.style.animation = '';
 
             // Show success message
-            alert(`Welcome to TreeViz, ${document.getElementById('firstName').value}! Your account has been created. Redirecting to login...`);
+            alert(`Welcome to TreeViz, ${document.getElementById('firstName').value}! Your account has been created. Redirecting ...`);
 
             // In a real app, you would redirect to login or dashboard
             setTimeout(() => {
