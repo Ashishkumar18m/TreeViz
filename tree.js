@@ -112,6 +112,92 @@ document.getElementById('loginBtn')?.addEventListener('click', function(e) {
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
     window.location.href = `login.html?returnTo=${encodeURIComponent(currentPage)}`;
 });
+// Mobile detection and redirect functionality
+document.addEventListener('DOMContentLoaded', function() {
+    // Check if user is on mobile device
+    if (isMobileDevice()) {
+        // Show notification about desktop site
+        showMobileNotification();
+    }
+});
+
+// Function to detect mobile device
+function isMobileDevice() {
+    return (window.innerWidth <= 768) || 
+           (window.innerHeight <= 600) ||
+           /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
+
+// Function to show mobile notification
+function showMobileNotification() {
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.id = 'mobile-notification';
+    notification.innerHTML = `
+        <div class="mobile-notification-content">
+            <i class="fas fa-info-circle"></i>
+            <div class="mobile-notification-text">
+                <strong>Desktop Site Recommended</strong>
+                <p>For the best visualization experience, please switch to desktop site or view on a larger screen.</p>
+            </div>
+            <button class="mobile-notification-close" onclick="this.parentElement.parentElement.remove()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    `;
+    
+    // Add to page
+    document.body.appendChild(notification);
+    
+    // Auto-hide after 8 seconds
+    setTimeout(() => {
+        if (document.getElementById('mobile-notification')) {
+            document.getElementById('mobile-notification').remove();
+        }
+    }, 8000);
+}
+
+// Override the tree card click handlers to show notification before redirecting
+document.addEventListener('DOMContentLoaded', function() {
+    const continueBtns = document.querySelectorAll('.continue-btn');
+    
+    continueBtns.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            if (isMobileDevice()) {
+                e.preventDefault();
+                
+                // Ask user if they want to proceed
+                if (confirm('For the best visualization experience, we recommend using desktop site. Do you want to continue anyway?')) {
+                    // User chose to continue - hide mobile notification if visible
+                    const notification = document.getElementById('mobile-notification');
+                    if (notification) notification.remove();
+                    
+                    // Proceed with visualization
+                    const treeType = this.getAttribute('data-tree');
+                    proceedToVisualization(treeType);
+                }
+            }
+        });
+    });
+});
+
+// Function to proceed to visualization (you may already have this)
+function proceedToVisualization(treeType) {
+    // Your existing code to switch to page 2
+    document.getElementById('page1').classList.remove('active');
+    document.getElementById('page2').classList.add('active');
+    
+    // Update title based on tree type
+    const titles = {
+        'simple': 'Simple Tree',
+        'binary': 'Binary Tree',
+        'bst': 'Binary Search Tree',
+        'avl': 'AVL Tree',
+        'heap': 'Heap Tree',
+        'trie': 'Trie Tree'
+    };
+    document.getElementById('selectedTreeTitle').textContent = titles[treeType] || 'Tree Visualization';
+}
 
 // Also update the signup button handler to ensure it's working
 document.getElementById('signupBtn')?.addEventListener('click', function(e) {
@@ -2228,6 +2314,7 @@ function updateUI() {
     updateButtons();
     updateStats();
 }
+
 
 // Initialize the application
 init();
