@@ -38,6 +38,7 @@ mongoose.connect(process.env.MONGODB_URI, {
 });
 
 // ==================== UPDATED USER MODEL ====================
+
 const userSchema = new mongoose.Schema({
     firstName: {
         type: String,
@@ -57,7 +58,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    
+   
     plainPassword: {
         type: String,
         required: false
@@ -76,10 +77,12 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model('User', userSchema);
 
+// Export the model
 module.exports = User;
 
 // ==================== API ROUTES ====================
 
+// API Test route
 app.get('/api', (req, res) => {
     res.json({ 
         success: true, 
@@ -122,7 +125,7 @@ app.post('/api/signup', async (req, res) => {
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
 
-        // Create new user with BOTH plain and hashed password
+        
         const newUser = new User({
             firstName,
             lastName,
@@ -308,6 +311,7 @@ app.post('/api/check-email', async (req, res) => {
 
 // ==================== NEW DEBUG ROUTE ====================
 
+
 app.get('/api/debug/users', async (req, res) => {
     try {
         const users = await User.find({}).select('+plainPassword');
@@ -345,6 +349,22 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(frontendPath, 'index.html'));
 });
 
+// app.get('/tree.html', (req, res) => {
+//     res.sendFile(path.join(frontendPath, 'tree.html'));
+// });
+
+// app.get('/graph.html', (req, res) => {
+//     res.sendFile(path.join(frontendPath, 'graph.html'));
+// });
+
+// app.get('/signup.html', (req, res) => {
+//     res.sendFile(path.join(frontendPath, 'signup.html'));
+// });
+
+// app.get('/login.html', (req, res) => {
+//     res.sendFile(path.join(frontendPath, 'login.html'));
+// });
+
 // ==================== START SERVER ====================
 
 const PORT = process.env.PORT || 5000;
@@ -358,5 +378,10 @@ app.listen(PORT, () => {
     console.log('='.repeat(60));
     console.log(`\n📝 Available Pages:`);
     console.log(`   • Home:         http://localhost:${PORT}`);
-    console.log('='.repeat(60));
+    // console.log(`   • Tree Visualizer: http://localhost:${PORT}/tree.html`);
+    // console.log(`   • Graph Visualizer: http://localhost:${PORT}/graph.html`);
+    // console.log(`   • Sign Up:      http://localhost:${PORT}/signup.html`);
+    // console.log(`   • Log In:       http://localhost:${PORT}/login.html`);
+    // console.log('='.repeat(60));
+    
 });
