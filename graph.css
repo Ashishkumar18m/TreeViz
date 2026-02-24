@@ -4,6 +4,18 @@
     box-sizing: border-box;
 }
 
+:root {
+        --primary-color: #667eea;
+        --secondary-color: #764ba2;
+        --accent-color: #17a2b8;
+        --light-color: #f8f9fa;
+        --dark-color: #343a40;
+        --success-color: #28a745;
+        --warning-color: #ffc107;
+        --danger-color: #dc3545;
+        --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        --border-radius: 8px;
+    }
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -21,7 +33,6 @@ body {
     height: 95vh;
     display: flex;
     flex-direction: column;
-    margin-left: 35px;
 }
 
 /* Header */
@@ -33,10 +44,6 @@ body {
     justify-content: space-between;
     align-items: center;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    background: linear-gradient(135deg, #1c1c1c 0%, #764ba2 100%);
-    color: white;
-    padding: 30px;
-    text-align: center;
 }
 
 .logo {
@@ -511,7 +518,27 @@ footer p {
 @media (max-width: 768px) {
     .btn {
         font-size: 6px;
-        text-decoration: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-buttons {
+        gap: 6px;
+    }
+    
+    .btn {
+        padding: 6px 10px;
+        font-size: 0.7rem;
+        min-width: auto;
+    }
+    
+    .btn-user {
+        padding: 4px 8px;
+        font-size: 0.65rem;
+    }
+    
+    .btn-user i {
+        font-size: 0.7rem;
     }
 }
 
@@ -556,7 +583,6 @@ footer p {
         height: 98vh;
         display: flex;
         flex-direction: column;
-        margin-right: 35px;
     }
 
     /* Header */
@@ -609,27 +635,65 @@ footer p {
         justify-content: space-between;
         margin-top: 6px;
         flex-wrap: wrap;
-        text-decoration: none;
+        width: 100%;
+    }
+
+    .nav-buttons .btn,
+    .nav-buttons button {
+        padding: 4px 8px;
+        font-size: 0.65rem;
+        min-width: 60px;
+        height: 28px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 3px;
+    }
+
+    .nav-buttons .btn i,
+    .nav-buttons button i {
+        font-size: 0.7rem;
+        margin-right: 2px;
+    }
+
+    .nav-buttons .btn span,
+    .nav-buttons button span {
+        font-size: 0.6rem;
+    }
+
+    .btn-user {
+        background: linear-gradient(135deg, #00c853 0%, #00e676 100%);
+        color: white;
+        padding: 4px 6px !important;
+    }
+
+    .btn-user i {
+        font-size: 0.7rem !important;
+    }
+
+    .btn-user span {
+        font-size: 0.6rem !important;
     }
 
     .user-info {
         display: flex;
         align-items: center;
-        gap: 4px;
-        padding: 4px 8px;
+        gap: 3px;
+        padding: 2px 6px;
         background: rgba(255, 255, 255, 0.2);
         border-radius: 14px;
         transition: all 0.3s ease;
+        height: 26px;
     }
 
     .user-info i {
-        font-size: 0.9rem;
+        font-size: 0.8rem;
     }
 
     .user-name {
         font-weight: 600;
-        font-size: 0.75rem;
-        max-width: 80px;
+        font-size: 0.65rem;
+        max-width: 60px;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -640,14 +704,18 @@ footer p {
         border: none;
         color: white;
         cursor: pointer;
-        padding: 3px;
+        padding: 2px;
         border-radius: 50%;
-        width: 24px;
-        height: 24px;
+        width: 20px;
+        height: 20px;
         display: flex;
         align-items: center;
         justify-content: center;
         transition: all 0.3s ease;
+    }
+
+    .logout-btn i {
+        font-size: 0.7rem !important;
     }
 
     /* Main Content */
@@ -703,19 +771,16 @@ footer p {
         transition: all 0.3s ease;
         touch-action: manipulation;
         -webkit-tap-highlight-color: transparent;
-        text-decoration: none;
     }
 
     .btn-primary {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         color: white;
-        text-decoration: none;
     }
 
     .btn-secondary {
         background: #6c757d;
         color: white;
-        text-decoration: none;
     }
 
     .btn-success {
@@ -736,7 +801,6 @@ footer p {
         gap: 4px;
         padding: 6px 10px;
         font-size: 0.75rem;
-        text-decoration: none;
     }
 
     .btn-user i {
@@ -783,7 +847,7 @@ footer p {
         margin-bottom: 5px;
         font-size: 0.95rem;
     }
-    
+
     .instructions p {
         margin-bottom: 3px;
         font-size: 0.75rem;
