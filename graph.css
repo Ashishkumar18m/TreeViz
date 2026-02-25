@@ -28,6 +28,7 @@ body {
     max-width: 1400px;
     background-color: rgba(255, 255, 255, 0.95);
     border-radius: 20px;
+    margin-left: 35px;
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
     overflow: hidden;
     height: 95vh;
@@ -578,6 +579,7 @@ footer p {
         max-width: 344px;
         background-color: rgba(255, 255, 255, 0.95);
         border-radius: var(--border-radius);
+        margin-left: 0px;
         box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
         overflow: hidden;
         height: 98vh;
